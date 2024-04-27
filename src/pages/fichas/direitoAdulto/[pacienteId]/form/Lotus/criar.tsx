@@ -922,36 +922,6 @@ export default function Medicina() {
                 }
               />
             </div> 
-
-            <div className="flex flex-col gap-1">
-              <Text>Reconhecimento de União estável:</Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.other}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    other: e.target.value,
-                  })
-                }
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text>Outro:</Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.other}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    other: e.target.value,
-                  })
-                }
-              />
-            </div> 
           </form>
 
           <Button
