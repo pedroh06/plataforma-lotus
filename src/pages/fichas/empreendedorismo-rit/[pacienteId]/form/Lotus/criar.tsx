@@ -690,22 +690,8 @@ export default function Medicina() {
                 }
               />
             </div>
-          </form>
 
-          <Button
-            type="submit"
-            disabled={isLoadingCreateForm}
-            onClick={() => handleSubmit()}
-          >
-            {isLoadingCreateForm ? (
-              <CircularProgress size={24} color="secondary" />
-            ) : (
-              "Enviar"
-            )}
-          </Button>
-        </div>
-
-        <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
                 <label>Qual das características mais descrevem seu perfil?</label>
               </Text>
@@ -1003,6 +989,20 @@ export default function Medicina() {
                 }
               />
             </div>
+          </form>
+
+          <Button
+            type="submit"
+            disabled={isLoadingCreateForm}
+            onClick={() => handleSubmit()}
+          >
+            {isLoadingCreateForm ? (
+              <CircularProgress size={24} color="secondary" />
+            ) : (
+              "Enviar"
+            )}
+          </Button>
+        </div>
       </div>
     </RecordLayout>
   );
