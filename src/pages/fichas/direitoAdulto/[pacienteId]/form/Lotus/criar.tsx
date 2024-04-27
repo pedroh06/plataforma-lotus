@@ -94,7 +94,7 @@ export default function Medicina() {
 
     try {
       setIsLoadingCreateForm(true);
-      await axios.post("/api/fichas/direitoAdulto", {
+      await axios.post("/api/fichas/direito", {
         userId: pacienteId,
         ...formData,
       });
