@@ -704,6 +704,305 @@ export default function Medicina() {
             )}
           </Button>
         </div>
+
+        <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Qual das características mais descrevem seu perfil?</label>
+              </Text>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Otimista"
+                  checked={formData.caracteristicas_perfil.includes("Otimista")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Otimista"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Otimista"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Otimista"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Otimista
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Persistente"
+                  checked={formData.caracteristicas_perfil.includes("Persistente")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Persistente"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Persistente"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Persistente"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Persistente
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Confiante"
+                  checked={formData.caracteristicas_perfil.includes("Confiante")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Confiante"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Confiante"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Confiante"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Confiante
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Corajoso"
+                  checked={formData.caracteristicas_perfil.includes("Corajoso")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Corajoso"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Corajoso"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Corajoso"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Corajoso
+                </label>
+              </div>
+
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Negativo"
+                  checked={formData.caracteristicas_perfil.includes("Negativo")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Negativo"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Negativo"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Negativo"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Negativo
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="SemPaciencia"
+                  checked={formData.caracteristicas_perfil.includes("SemPaciencia")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "SemPaciencia"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "SemPaciencia"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="SemPaciencia"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Sem Paciência
+                </label>
+              </div>
+
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="Procrastinador"
+                  checked={formData.caracteristicas_perfil.includes("Procrastinador")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Procrastinador"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Procrastinador"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Procrastinador"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Procrastinador
+                </label>
+              </div>
+
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="Acomodado"
+                  checked={formData.caracteristicas_perfil.includes("Acomodado")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Acomodado"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Acomodado"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Acomodado"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Acomodado
+                </label>
+              </div>
+
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="Indisponível"
+                  checked={formData.caracteristicas_perfil.includes("Indisponível")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: [...formData.caracteristicas_perfil, "Indisponível"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        caracteristicas_perfil: formData.caracteristicas_perfil.filter((item) => item !== "Indisponível"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Indisponível"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Indisponível
+                </label>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <Text>Outros:</Text>
+                <TextField
+                  label=""
+                  variant="filled"
+                  value={formData.outros_perfis}
+                  onChange={(e) =>
+                    setFormDate({
+                      ...formData,
+                      outros_perfis: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            {/*caso esteja dando merda, ve se o problema nao é essa div aqui em cima desse comentario, caso
+            nao seja ai eu nao sei oq é */}
+
+
+            <div className="flex flex-col gap-1">
+              <Text>Quais são suas principais fontes de motivação ou inspiração para buscar novas oportunidades?</Text>
+              <TextField
+                label=""
+                variant="filled"
+                value={formData.fonte_motivacao}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    fonte_motivacao: e.target.value,
+                  })
+                }
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <Text>Quais são suas expectativas em relação a ter um negócio próprio?</Text>
+              <TextField
+                label=""
+                variant="filled"
+                value={formData.expectativa_negocio}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    expectativa_negocio: e.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text>No que podemos lhe ajudar, na vertente de empreendedorismo?</Text>
+              <TextField
+                label=""
+                variant="filled"
+                value={formData.ajuda_empreendedorismo}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    ajuda_empreendedorismo: e.target.value,
+                  })
+                }
+              />
+            </div>
       </div>
     </RecordLayout>
   );
