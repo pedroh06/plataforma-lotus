@@ -180,8 +180,7 @@ export default function Medicina() {
                 multiline
                 rows={1}
                 variant="filled"
-                value={formData.sleep_pattern
-                }
+                value={formData.sleep_pattern}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,

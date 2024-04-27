@@ -137,7 +137,7 @@ export default function Medicina() {
 
   const handleSubmit = async (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-
+    
     try {
       setIsLoadingCreateForm(true);
       await axios.post("/api/fichas/odontologia", {
