@@ -42,6 +42,10 @@ const Resident: NextPage = () => {
 
   const [resident, setResident] = useState({
     name: "",
+    aluno_escola: "",
+    pai_do_aluno: "",
+    morador_sagrada_familia: "",
+    morador_proximidades: "",
     socialName: "",
     birthDate: "",
     gender: "",
@@ -78,6 +82,11 @@ const Resident: NextPage = () => {
     try {
       setIsLoadingCreateResident(true);
       await axios.post("/api/residente", {
+        aluno_escola: resident.aluno_escola,
+        pai_do_aluno: resident.pai_do_aluno,
+        morador_sagrada_familia: resident.morador_sagrada_familia,
+        morador_proximidades: resident.morador_proximidades,
+
         name: resident.name,
         socialName: resident.socialName,
         birthDate: resident.birthDate,
@@ -124,6 +133,13 @@ const Resident: NextPage = () => {
           id: "",
           name: "",
         },
+        aluno_escola: "",
+
+        pai_do_aluno: "",
+        morador_sagrada_familia: "",
+        morador_proximidades: "",
+
+
         profession: "",
         maritalStatus: "",
         children: 0,
@@ -174,6 +190,62 @@ const Resident: NextPage = () => {
           noValidate
           onSubmit={handleSubmit}
         >
+
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="success"
+                checked={resident.pai_do_aluno}
+                onChange={(e) =>
+                  setResident({ ...resident, pai_do_aluno: e.target.checked })
+                }
+              />
+            }
+            label="É pai de aluno?"
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="success"
+                checked={resident.aluno_escola}
+                onChange={(e) =>
+                  setResident({ ...resident, aluno_escola: e.target.checked })
+                }
+              />
+            }
+            label="É aluno?"
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="success"
+                checked={resident.morador_proximidades}
+                onChange={(e) =>
+                  setResident({ ...resident, morador_proximidades: e.target.checked })
+                }
+              />
+            }
+            label="É morador das proximidades?"
+          />
+
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="success"
+                checked={resident.morador_sagrada_familia}
+                onChange={(e) =>
+                  setResident({ ...resident, morador_sagrada_familia: e.target.checked })
+                }
+              />
+            }
+            label="É morador da sagrada familia?"
+          />
+
+
           <FormControlLabel
             control={
               <Checkbox
@@ -368,7 +440,7 @@ const Resident: NextPage = () => {
                 }
               />
 
-{/* 
+              {/* 
               {resident.children > 0 && (
                 <>
                   {Array.from({ length: resident.children }, (_, index) => (

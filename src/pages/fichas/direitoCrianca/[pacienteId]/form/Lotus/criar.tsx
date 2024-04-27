@@ -6,37 +6,26 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-// @ts-nocheck
 import { RecordLayout } from "@/components/layouts/RecordLayout";
 
 import { Button } from "@/components/ui/button";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  PlusIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-export const medical_appointments = {
-  anamnese: [
-    {
-      id: "1",
-      type: "ficha_gaia",
-      date: "01/01/2000",
-    },
-  ],
-};
-
-export default function Medicina() {
+export default function direitoCrianca() {
   const router = useRouter();
   const { pacienteId } = router.query;
 
   const [residents, setResidents] = useState([]);
   const [resident, setResident] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCreateForm, setIsLoadingCreateForm] = useState(false);
 
-  const [selectMenu, setSelectMenu] = useState("form");
+  const [formData, setFormDate] = useState({
+    report: "",
+  });
 
   React.useEffect(() => {
     if (!pacienteId) {
@@ -87,10 +76,34 @@ export default function Medicina() {
     );
   }
 
+  const handleSubmit = async (e: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    // e.preventDefault();
+
+    try {
+      setIsLoadingCreateForm(true);
+      await axios.post("/api/fichas/direitoCrianca", {
+        userId: pacienteId,
+        ...formData,
+      });
+
+      toast.success("Realizado com sucesso com sucesso!");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      toast.error("Erro ao registrar!");
+    } finally {
+      setIsLoadingCreateForm(false);
+    }
+  };
+
   return (
     <RecordLayout>
-      <div className="flex w-full flex-col items-center justify-center gap-4 rounded-md bg-white px-4 py-16 shadow-2xl sm:w-[600px]">
-        <h1 className="bold text-xl">Medicina</h1>
+      <div className="my-4 flex w-full flex-col items-center justify-center gap-4 rounded-md bg-white px-4 py-16 shadow-2xl sm:w-[600px]">
+        <h1 className="bold text-xl">Direito (Criança)</h1>
 
         <div className="relative flex w-full flex-col gap-4 px-2 pt-8">
           <button
@@ -104,81 +117,35 @@ export default function Medicina() {
 
           <ProfileUser user={resident} residents={residents} />
 
-          <div className="flex items-center gap-4 overflow-y-auto border-b-2 border-gray-300 px-2 py-4">
-            <button
-              className={
-                selectMenu === "form"
-                  ? "border-b-2 border-purple-400"
-                  : "text-gray-400 transition-colors hover:text-gray-600"
-              }
-              onClick={() => setSelectMenu("form")}
-            >
-              Formulário
-            </button>
-          </div>
+          <form className="flex w-full flex-col gap-7" onSubmit={handleSubmit}>
 
-          <div className="flex flex-col gap-4 overflow-y-auto">
-            {
-              {
-                form: (
-                  <>
-                    <button
-                      className="flex items-center gap-2 self-end text-sm text-gray-400 transition-colors hover:text-gray-600 focus:outline-none"
-                      onClick={() =>
-                        router.push(
-                          `/fichas/medicina/${pacienteId}/form/Lotus/criar`,
-                        )
-                      }
-                    >
-                      <PlusIcon className="h-6 w-6" />
-                      Criar
-                    </button>
-                    {/* <Dialog>
-                      <DialogTrigger asChild>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                          <DialogTitle>
-                            Escolha a ficha de Formulário
-                          </DialogTitle>
-                        </DialogHeader>
-                        <Combobox />
+            <div className="flex flex-col gap-1">
+              <Text>Relatório:</Text>
+              <TextField
+                label=""
+                variant="filled"
+                value={formData.report}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    report: e.target.value,
+                  })
+                }
+              />
+            </div>
+          </form>
 
-                        <DialogFooter>
-                          <Button type="submit">Criar</Button>
-                        </DialogFooter>
-                      </DialogContent>
-                    </Dialog> */}
-                    {resident.medicina.map((anamnese) => (
-                      <>
-                        <div
-                          key={anamnese.id}
-                          className="flex cursor-not-allowed cursor-pointer items-center justify-between rounded-md bg-gray-100 px-4 py-2 shadow-sm transition-all hover:bg-gray-400 hover:shadow-lg"
-                          // onClick={() =>
-                          //   router.push(
-                          //     `/fichas/medicina/${resident.id}/${anamnese.id}`,
-                          //   )
-                          // }
-                        >
-                          <span className="text-sm">
-                            {new Date(anamnese.createdAt).toLocaleDateString(
-                              "pt-BR",
-                              {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                              },
-                            )}
-                          </span>
-                          <ChevronRightIcon className="h-6 w-6" />
-                        </div>
-                      </>
-                    ))}
-                  </>
-                ),
-              }[selectMenu]
-            }
-          </div>
+          <Button
+            type="submit"
+            disabled={isLoadingCreateForm}
+            onClick={() => handleSubmit()}
+          >
+            {isLoadingCreateForm ? (
+              <CircularProgress size={24} color="secondary" />
+            ) : (
+              "Enviar"
+            )}
+          </Button>
         </div>
       </div>
     </RecordLayout>
@@ -196,6 +163,7 @@ function ProfileUser({ user, residents }: ProfileUserProps) {
       {user.socialName !== "" && (
         <span className="text-sm">Nome Social: {user.socialName}</span>
       )}
+
       <span className="text-sm">
         Data de Nascimento:{" "}
         {user.birthDate.toLocaleDateString("pt-BR", {
@@ -223,6 +191,7 @@ function ProfileUser({ user, residents }: ProfileUserProps) {
 import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
 import * as React from "react";
 
+import { Text } from "@/components/elements/Text";
 import {
   Command,
   CommandEmpty,
@@ -236,6 +205,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import {
+  CircularProgress,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
+import axios from "axios";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const frameworks = [
   {

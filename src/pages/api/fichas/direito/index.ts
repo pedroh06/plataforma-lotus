@@ -15,7 +15,7 @@ export default async function handler(
     const body = req.body;
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const user = await db.physiotherapyAnamnesis.create({
+    const user = await db.direito_FORM_Adulto.create({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       data: {
         ...body,

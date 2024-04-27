@@ -27,6 +27,35 @@ export default function Medicina() {
   const [data, setData] = useState([]);
 
   const [formData, setFormDate] = useState({
+
+    instrucao: "",
+    gosta_doces: "",
+    gosta_cafe: "",
+    alcool: "",
+    fumante: "",
+    cirurgia: "",
+    qual_cirurgia: "",
+    complicacao: "",
+    odontalgia: "",
+    odontalgia_descricao: "",
+    fistula: "",
+    abscesso_periodontal: "",
+    apinhamento_dentario: "",
+    raizes_residuais: "",
+    raizes_quais: "",
+    edema: "",
+    bruxismo: "",
+    atricao_erosao_abrasao: "",
+    apertamento: "",
+    unhas: "",
+    morde_objetos: "",
+    objetos_quais: "",
+
+    tenso: "",
+    ausencia_dentes: "",
+    protese: "",
+    qual_protese: "",
+
     complaint: "",
     isToothache: "",
     isGumPain: "",
@@ -148,32 +177,18 @@ export default function Medicina() {
           <ProfileUser user={resident} residents={residents} />
 
           <form className="flex w-full flex-col gap-7" onSubmit={handleSubmit}>
-            <Text size="lg">1- HISTÓRICO CLÍNICO</Text>
-            <TextField
-              label="Queixa principal"
-              multiline
-              rows={2}
-              variant="filled"
-              value={formData.complaint}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  complaint: e.target.value,
-                })
-              }
-            />
-
+  
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Dor nos dentes?</label>
+                <label>Já teve instrução de higiene oral?</label>
               </Text>
 
               <RadioGroup
-                value={formData.isToothache}
+                value={formData.instrucao}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    isToothache: e.target.value,
+                    instrucao: e.target.value,
                   })
                 }
                 row
@@ -183,89 +198,10 @@ export default function Medicina() {
               </RadioGroup>
             </div>
 
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label>Dor na gengiva?</label>
-              </Text>
-
-              <RadioGroup
-                value={formData.isGumPain}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    isGumPain: e.target.value,
-                  })
-                }
-                row
-              >
-                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
-                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
-              </RadioGroup>
-            </div>
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Gengiva sangra ao escovar?</label>
-              </Text>
-
-              <RadioGroup
-                value={formData.isGumsBleedWhenBrushing}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    isGumsBleedWhenBrushing: e.target.value,
-                  })
-                }
-                row
-              >
-                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
-                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
-              </RadioGroup>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label>Usa fio dental?</label>
-              </Text>
-
-              <RadioGroup
-                value={formData.isUseToothpaste}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    isUseToothpaste: e.target.value,
-                  })
-                }
-                row
-              >
-                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
-                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
-              </RadioGroup>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label>Usa creme dental?</label>
-              </Text>
-
-              <RadioGroup
-                value={formData.isUseDentalFloss}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    isUseDentalFloss: e.target.value,
-                  })
-                }
-                row
-              >
-                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
-                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
-              </RadioGroup>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label>Escovação quantas vezes/dia?</label>
+                <label>Escovação quantas vezes ao dia?</label>
               </Text>
 
               <RadioGroup
@@ -293,8 +229,36 @@ export default function Medicina() {
                   control={<Radio />}
                   label="3 vezes +"
                 />
+                <FormControlLabel
+                  value="NENHUMA"
+                  control={<Radio />}
+                  label="nenhuma"
+                />
               </RadioGroup>
             </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Usa fio dental?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.isUseToothpaste}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    isUseToothpaste: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
@@ -326,53 +290,15 @@ export default function Medicina() {
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Troca da escova</label>
+                <label>HÁBITOS ALIMENTARES: Gosta de doces?</label>
               </Text>
 
               <RadioGroup
-                value={formData.brushChange}
+                value={formData.gosta_doces}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    brushChange: e.target.value,
-                  })
-                }
-                row
-              >
-                <FormControlLabel
-                  value="TODO_MES"
-                  control={<Radio />}
-                  label="Todo mês"
-                />
-                <FormControlLabel
-                  value="DOIS_EM_DOIS_MESES"
-                  control={<Radio />}
-                  label="2 em 2 meses"
-                />
-                <FormControlLabel
-                  value="TRES_EM_TRES_MESES_OU_MAIS"
-                  control={<Radio />}
-                  label="3 em 3 meses +"
-                />
-                <FormControlLabel
-                  value="NAO_SABE"
-                  control={<Radio />}
-                  label="Não sabe"
-                />
-              </RadioGroup>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label>Usa chupeta?</label>
-              </Text>
-
-              <RadioGroup
-                value={formData.isUsePacifier}
-                onChange={(e) =>
-                  setFormDate({
-                    ...formData,
-                    isUsePacifier: e.target.value,
+                    gosta_doces: e.target.value,
                   })
                 }
                 row
@@ -382,55 +308,153 @@ export default function Medicina() {
               </RadioGroup>
             </div>
 
-            <TextField
-              label="Hábitos alimentares"
-              multiline
-              rows={4}
-              variant="filled"
-              value={formData.eatingHabits}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  eatingHabits: e.target.value,
-                })
-              }
-            />
-
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Alergias</label>
+                <label>HÁBITOS ALIMENTARES: Gosta de café?</label>
               </Text>
 
               <RadioGroup
-                value={formData.isAllergic}
+                value={formData.gosta_cafe}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    isAllergic: e.target.value,
+                    gosta_cafe: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Faz uso de álcool?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.alcool}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    alcool: e.target.value,
                   })
                 }
                 row
               >
                 <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
                 <FormControlLabel value="NAO" control={<Radio />} label="Não" />
-                <FormControlLabel
-                  value="NAO_SABE"
-                  control={<Radio />}
-                  label="Não sabe"
-                />
+
               </RadioGroup>
             </div>
 
-            {/* RENDERIZAR APENAS QUANDO FOR SIM */}
-            {formData.isAllergic === "SIM" && (
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Fumante?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.fumante}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    fumante: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Já realizou cirurgia odontológica?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.cirurgia}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    cirurgia: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            {formData.cirurgia === "SIM" && (
               <TextField
-                label="A que?"
+                label="Qual?"
                 variant="filled"
-                value={formData.allergy}
+                value={formData.qual_cirurgia}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    allergy: e.target.value,
+                    qual_cirurgia: e.target.value,
+                  })
+                }
+              />
+            )}
+
+            {formData.cirurgia === "SIM" && (
+              <TextField
+                label="Teve alguma complicação?"
+                variant="filled"
+                value={formData.complicacao}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    complicacao: e.target.value,
+                  })
+                }
+              />
+            )}
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Odontalgia?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.odontalgia}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    odontalgia: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            {formData.odontalgia === "SIM" && (
+              <TextField
+                label="Estim. Espont."
+                variant="filled"
+                value={formData.odontalgia_descricao}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    odontalgia_descricao: e.target.value,
                   })
                 }
               />
@@ -438,290 +462,338 @@ export default function Medicina() {
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Tratamento odontológico</label>
+                <label>Fístula no dente/região?</label>
               </Text>
 
               <RadioGroup
-                value={formData.dentalTreatmentStatus}
+                value={formData.fistula}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    dentalTreatmentStatus: e.target.value,
+                    fistula: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="CONCLUIDO"
-                  control={<Radio />}
-                  label="Concluído"
-                />
-                <FormControlLabel
-                  value="PENDENTE"
-                  control={<Radio />}
-                  label="Pendente"
-                />
-                <FormControlLabel
-                  value="EM_ANDAMENTO"
-                  control={<Radio />}
-                  label="Em andamento"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.dentalTreatment}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  dentalTreatment: e.target.value,
-                })
-              }
-            />
 
-            <Text size="lg">2- EXAME CLÍNICO</Text>
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Gengiva</label>
+                <label>Abscesso periodontal no dente?</label>
               </Text>
 
               <RadioGroup
-                value={formData.gum}
+                value={formData.abscesso_periodontal}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    gum: e.target.value,
+                    abscesso_periodontal: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="NORMAL"
-                  control={<Radio />}
-                  label="Normal"
-                />
-                <FormControlLabel
-                  value="ALTERADA"
-                  control={<Radio />}
-                  label="Alterada"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.gumObs}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  gumObs: e.target.value,
-                })
-              }
-            />
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Mucosa jugal</label>
+                <label>Apinhamento dentário:</label>
               </Text>
 
               <RadioGroup
-                value={formData.jugalMucosa}
+                value={formData.apinhamento_dentario}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    jugalMucosa: e.target.value,
+                    apinhamento_dentario: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="NORMAL"
-                  control={<Radio />}
-                  label="Normal"
-                />
-                <FormControlLabel
-                  value="ALTERADA"
-                  control={<Radio />}
-                  label="Alterada"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.jugalObs}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  jugalObs: e.target.value,
-                })
-              }
-            />
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Palato</label>
+                <label>Raízes residuais:</label>
               </Text>
 
               <RadioGroup
-                value={formData.palate}
+                value={formData.raizes_residuais}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    palate: e.target.value,
+                    raizes_residuais: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="NORMAL"
-                  control={<Radio />}
-                  label="Normal"
-                />
-                <FormControlLabel
-                  value="ALTERADA"
-                  control={<Radio />}
-                  label="Alterada"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.palateObs}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  palateObs: e.target.value,
-                })
-              }
-            />
+            {formData.raizes_residuais === "SIM" && (
+              <TextField
+                label=""
+                variant="filled"
+                value={formData.raizes_quais}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    raizes_quais: e.target.value,
+                  })
+                }
+              />
+            )}
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Assoalho</label>
+                <label>Edemas na região?</label>
               </Text>
 
               <RadioGroup
-                value={formData.floor}
+                value={formData.edema}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    floor: e.target.value,
+                    edema: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="NORMAL"
-                  control={<Radio />}
-                  label="Normal"
-                />
-                <FormControlLabel
-                  value="ALTERADA"
-                  control={<Radio />}
-                  label="Alterada"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.floorObs}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  floorObs: e.target.value,
-                })
-              }
-            />
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Língua</label>
+                <label>Bruxismo?</label>
               </Text>
 
               <RadioGroup
-                value={formData.tongue}
+                value={formData.bruxismo}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    tongue: e.target.value,
+                    bruxismo: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="NORMAL"
-                  control={<Radio />}
-                  label="Normal"
-                />
-                <FormControlLabel
-                  value="ALTERADA"
-                  control={<Radio />}
-                  label="Alterada"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.tongueObs}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  tongueObs: e.target.value,
-                })
-              }
-            />
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label>Fluorose</label>
+                <label>Atrito/Erosão ou abrasão</label>
               </Text>
 
               <RadioGroup
-                value={formData.fluorosis}
+                value={formData.atricao_erosao_abrasao}
                 onChange={(e) =>
                   setFormDate({
                     ...formData,
-                    fluorosis: e.target.value,
+                    atricao_erosao_abrasao: e.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel
-                  value="NORMAL"
-                  control={<Radio />}
-                  label="Normal"
-                />
-                <FormControlLabel
-                  value="ALTERADA"
-                  control={<Radio />}
-                  label="Alterada"
-                />
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
               </RadioGroup>
             </div>
 
-            <TextField
-              label="OBS"
-              variant="filled"
-              value={formData.fluorosisObs}
-              onChange={(e) =>
-                setFormDate({
-                  ...formData,
-                  fluorosisObs: e.target.value,
-                })
-              }
-            />
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Apertamento dental:</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.apertamento}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    apertamento: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Roe unhas?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.unhas}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    unhas: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Morde objetos(tampa de caneta, lápis)?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.morde_objetos}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    morde_objetos: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            {formData.morde_objetos === "SIM" && (
+              <TextField
+                label="Quais?"
+                variant="filled"
+                value={formData.objetos_quais}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    objetos_quais: e.target.value,
+                  })
+                }
+              />
+            )}
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Se considera tenso ou nervoso?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.tenso}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    tenso: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Ausência de dentes?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.ausencia_dentes}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    ausencia_dentes: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Utiliza prótese dentária?</label>
+              </Text>
+
+              <RadioGroup
+                value={formData.protese}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    protese: e.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
+                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
+
+              </RadioGroup>
+            </div>
+
+
+            {formData.protese === "SIM" && (
+              <TextField
+                label="Onde?"
+                variant="filled"
+                value={formData.qual_protese}
+                onChange={(e) =>
+                  setFormDate({
+                    ...formData,
+                    qual_protese: e.target.value,
+                  })
+                }
+              />
+            )}
+
+
+            
+
 
             <Text size="lg">2- ODONTOGRAMA</Text>
             <Odontogram

@@ -25,6 +25,14 @@ export default async function handler(
         Medical_Anamnesis_GAIA_1: true,
         Medical_Care_GAIA_1: true,
         Blank_Sheet: true,
+        psicologia: true,
+        Direito_FORM_Adulto: true,
+        Direito_FORM_Crianca: true,
+        medicina: true,
+        odontologia: true, 
+        physiotherapyAnamnesis: true,
+        Psicologia_FORM_ESSE_RIO: true,
+        Empreendedorismo_FORM_RIT: true,
       },
     });
 

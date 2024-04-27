@@ -90,7 +90,7 @@ export default function Medicina() {
   return (
     <RecordLayout>
       <div className="flex w-full flex-col items-center justify-center gap-4 rounded-md bg-white px-4 py-16 shadow-2xl sm:w-[600px]">
-        <h1 className="bold text-xl">Medicina</h1>
+        <h1 className="bold text-xl">Direito (Criança)</h1>
 
         <div className="relative flex w-full flex-col gap-4 px-2 pt-8">
           <button
@@ -126,7 +126,7 @@ export default function Medicina() {
                       className="flex items-center gap-2 self-end text-sm text-gray-400 transition-colors hover:text-gray-600 focus:outline-none"
                       onClick={() =>
                         router.push(
-                          `/fichas/medicina/${pacienteId}/form/Lotus/criar`,
+                          `/fichas/direitoCrianca/${pacienteId}/form/Lotus/criar`,
                         )
                       }
                     >
@@ -149,7 +149,7 @@ export default function Medicina() {
                         </DialogFooter>
                       </DialogContent>
                     </Dialog> */}
-                    {resident.medicina.map((anamnese) => (
+                    {resident.Direito_FORM_Crianca.map((anamnese) => (
                       <>
                         <div
                           key={anamnese.id}

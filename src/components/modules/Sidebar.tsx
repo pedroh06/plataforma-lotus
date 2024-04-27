@@ -96,7 +96,7 @@ export function Sidebar() {
                 )}
               >
                 <PenSquare className="h-6 w-6" />
-                <Text className="ml-3 font-bold">Ficha em branco</Text>
+                <Text className="ml-3 font-bold">Medicina (Ficha Aberta)</Text>
               </Link>
             </li>
             <li>
@@ -116,36 +116,7 @@ export function Sidebar() {
                 <CollapsiblePrimitive.Content>
                   <ul className="ml-4 space-y-2 py-2">
                     <li>
-                      <Link
-                        href="/fichas/nutricao"
-                        onClick={() => toggleSidebar()}
-                        className={clsx(
-                          "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
-                          {
-                            "bg-purple-400":
-                              router.pathname === "/fichas/nutricao",
-                          },
-                        )}
-                      >
-                        <Apple className="h-6 w-6" />
-                        <Text className="ml-3 font-bold">Nutrição</Text>
-                      </Link>
-{/* 
-                      <Link
-                        href="/fichas/medicina"
-                        onClick={() => toggleSidebar()}
-                        className={clsx(
-                          "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
-                          {
-                            "bg-purple-400":
-                              router.pathname === "/fichas/medicina",
-                          },
-                        )}
-                      >
-                        <Stethoscope className="h-6 w-6" />
-                        <Text className="ml-3 font-bold">Medicina</Text>
-                      </Link> */}
-
+                      
                       <Link
                         href="/fichas/fisioterapia"
                         onClick={() => toggleSidebar()}
@@ -192,18 +163,78 @@ export function Sidebar() {
                       </Link>
 
                       <Link
-                        href="/fichas/direito"
+                        href="/fichas/nutricao"
                         onClick={() => toggleSidebar()}
                         className={clsx(
                           "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
                           {
                             "bg-purple-400":
-                              router.pathname === "/fichas/direito",
+                              router.pathname === "/fichas/nutricao",
                           },
                         )}
                       >
                         <Apple className="h-6 w-6" />
-                        <Text className="ml-3 font-bold">Direito</Text>
+                        <Text className="ml-3 font-bold">Nutrição</Text>
+                      </Link>
+
+                      <Link
+                        href="/fichas/direitoAdulto"
+                        onClick={() => toggleSidebar()}
+                        className={clsx(
+                          "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
+                          {
+                            "bg-purple-400":
+                              router.pathname === "/fichas/direitoAdulto",
+                          },
+                        )}
+                      >
+                        <Apple className="h-6 w-6" />
+                        <Text className="ml-3 font-bold">Direito (Adulto)</Text>
+                      </Link>
+
+                      <Link
+                        href="/fichas/direitoCrianca"
+                        onClick={() => toggleSidebar()}
+                        className={clsx(
+                          "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
+                          {
+                            "bg-purple-400":
+                              router.pathname === "/fichas/direitoCrianca",
+                          },
+                        )}
+                      >
+                        <Apple className="h-6 w-6" />
+                        <Text className="ml-3 font-bold">Direito (Criança)</Text>
+                      </Link>
+
+                      <Link
+                        href="/fichas/medicina"
+                        onClick={() => toggleSidebar()}
+                        className={clsx(
+                          "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
+                          {
+                            "bg-purple-400":
+                              router.pathname === "/fichas/medicina",
+                          },
+                        )}
+                      >
+                        <Apple className="h-6 w-6" />
+                        <Text className="ml-3 font-bold">Medicina (Ficha de Triagem)</Text>
+                      </Link>
+
+                      <Link
+                        href="/fichas/empreendedorismo-rit"
+                        onClick={() => toggleSidebar()}
+                        className={clsx(
+                          "flex items-center rounded-lg p-2 transition duration-75 hover:bg-purple-300",
+                          {
+                            "bg-purple-400":
+                              router.pathname === "/fichas/empreendedorismo-rit",
+                          },
+                        )}
+                      >
+                        <Apple className="h-6 w-6" />
+                        <Text className="ml-3 font-bold">Empreendedorismo (RIT)</Text>
                       </Link>
                     </li>
                   </ul>

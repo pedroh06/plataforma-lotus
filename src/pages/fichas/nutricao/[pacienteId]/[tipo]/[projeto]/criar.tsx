@@ -24,28 +24,57 @@ export default function Medicina() {
   const [isLoadingCreateForm, setIsLoadingCreateForm] = useState(false);
 
   const [formData, setFormDate] = useState({
-    nutritionist_visit: "",
+    cirurgia: "",
+    qual_cirurgia: "",
     health_problem: "",
-    previous_pathologies: "",
-    family_background: "",
+    tabagismo: "",
+    alcoolismo: "",
+    obesidade: "",
+    obesos_familia: "",
+    obeso_qual: "",
+    diabete: "",
+    diabetico_familia: "",
+    diabeticos_qual: "",
+    insulina: "",
+    patologia: [""],
+    outra_patologia: "",
+    condicao_saude: "",
+    qual_condicao: "",
 
-    use_medicine: "",
-    what_medicines: "",
+    restric_alimentar: "",
+    restric_alimentar_qual: "",
 
-    intestine_functioning_regularly: "",
-    bowel_movements_day: "",
-    consistency: "",
-    coloring: "",
-    liters__water_consumed_per_day: "",
-    food_frequency: "",
-    food_allergy_or_intolerance: "",
-    which_food: "",
-    food_aversion: "",
-    use_nutritional_supplements: "",
+    peso: "",
+    altura: "",
+    refeic_pordia: "",
+    agua_pordia: "",
+    fruta_vegetal: "",
+    frutaveg_frequencia: "",
+    alimento_processado: "",
+    alimento_processado_frequencia: "",
+    apetite: "",
+    suplemento: "",
+    suplemento_qual: "",
 
-    weight: "",
-    stature: "",
-    imc: "",
+
+
+    atividade_fisica: "",
+    atividade_fisica_frequencia: "",
+
+
+    hora_acorda: "",
+    hora_dormir: "",
+    dorme_noite_toda: "",
+    medicacao_sono: "",
+    qual_medicacao: "",
+
+
+
+    
+
+    
+
+    
   });
 
   React.useEffect(() => {
@@ -142,330 +171,877 @@ export default function Medicina() {
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
                 <label className="max-w-[80%]">
-                  Já foi em um nutricionista?
+                  Já fez alguma cirurgia?
                 </label>
               </Text>
 
               <RadioGroup
-                value={formData.nutritionist_visit}
+                value={formData.cirurgia}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    nutritionist_visit: event.target.value,
+                    cirurgia: event.target.value,
                   })
                 }
                 row
               >
-                <FormControlLabel value="NÃO" control={<Radio />} label="Não" />
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
                 <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
               </RadioGroup>
             </div>
 
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">
-                  História sobre o problema de saúde, com início e duração,
-                  sintomas:
-                </label>
-              </Text>
+            {formData.cirurgia === "Sim" && (
               <TextField
-                label=""
+                label="Informe qual"
                 variant="filled"
-                multiline
-                rows={2}
-                value={formData.health_problem}
+                value={formData.qual_cirurgia}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    health_problem: event.target.value,
-                  })
-                }
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">Antecedentes familiares:</label>
-              </Text>
-              <TextField
-                label=""
-                variant="filled"
-                multiline
-                rows={2}
-                value={formData.family_background}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    family_background: event.target.value,
-                  })
-                }
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label id="Genero" className="max-w-[70%]">
-                  Usa algum tipo de medicamento?:
-                </label>
-              </Text>
-
-              <RadioGroup
-                value={formData.use_medicine}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    use_medicine: event.target.value,
-                  })
-                }
-                row
-              >
-                <FormControlLabel value="SIM" control={<Radio />} label="Sim" />
-                <FormControlLabel value="NAO" control={<Radio />} label="Não" />
-              </RadioGroup>
-            </div>
-
-            {formData.use_medicine === "SIM" && (
-              <TextField
-                label="Qual"
-                variant="filled"
-                value={formData.what_medicines}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    what_medicines: event.target.value,
+                    qual_cirurgia: event.target.value,
                   })
                 }
               />
             )}
 
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">
-                  Intestino funcionando regulamente:
-                </label>
-              </Text>
-              <TextField
-                label=""
-                variant="filled"
-                multiline
-                rows={2}
-                value={formData.intestine_functioning_regularly}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    intestine_functioning_regularly: event.target.value,
-                  })
-                }
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">Evacuações/dia:</label>
-              </Text>
-              <TextField
-                label=""
-                variant="filled"
-                multiline
-                rows={2}
-                value={formData.bowel_movements_day}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    bowel_movements_day: event.target.value,
-                  })
-                }
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">Consistência:</label>
-              </Text>
-              <TextField
-                label=""
-                variant="filled"
-                multiline
-                rows={2}
-                value={formData.consistency}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    consistency: event.target.value,
-                  })
-                }
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">Coloração:</label>
-              </Text>
-              <TextField
-                label=""
-                variant="filled"
-                multiline
-                rows={2}
-                value={formData.coloring}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    coloring: event.target.value,
-                  })
-                }
-              />
-            </div>
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
                 <label className="max-w-[80%]">
-                  Quantos litros de água ingere por dia(média): Frequência
-                  alimentares:
+                  Tabagismo?
                 </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.liters__water_consumed_per_day}
+
+              <RadioGroup
+                value={formData.tabagismo}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    liters__water_consumed_per_day: event.target.value,
+                    tabagismo: event.target.value,
                   })
                 }
-              />
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
             </div>
 
-            <div className="flex flex-col gap-1">
-              <Text size="lg" asChild>
-                <label className="max-w-[80%]">Frequência alimentares:</label>
-              </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.food_frequency}
-                onChange={(event) =>
-                  setFormDate({
-                    ...formData,
-                    food_frequency: event.target.value,
-                  })
-                }
-              />
-            </div>
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
                 <label className="max-w-[80%]">
-                  Alergia ou intolerância alimentar: Se sim, qual alimento:
+                  Alcoolismo?
                 </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.food_allergy_or_intolerance}
+
+              <RadioGroup
+                value={formData.alcoolismo}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    food_allergy_or_intolerance: event.target.value,
+                    alcoolismo: event.target.value,
                   })
                 }
-              />
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
             </div>
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
                 <label className="max-w-[80%]">
-                  Uso de Suplementos nutricionais: Se Sim Qual?
+                  Obesidade?
                 </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.use_nutritional_supplements}
+
+              <RadioGroup
+                value={formData.obesidade}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    use_nutritional_supplements: event.target.value,
+                    obesidade: event.target.value,
                   })
                 }
-              />
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
             </div>
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label className="max-w-[80%]">Aversões alimentares:</label>
+                <label className="max-w-[80%]">
+                  Há obesos na família?
+                </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.food_aversion}
+
+              <RadioGroup
+                value={formData.obesos_familia}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    food_aversion: event.target.value,
+                    obesos_familia: event.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+
+            {formData.obesos_familia === "Sim" && (
+              <TextField
+                label="Quem?"
+                variant="filled"
+                value={formData.obeso_qual}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    obeso_qual: event.target.value,
                   })
                 }
               />
-            </div>
+            )}
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label className="max-w-[80%]">Peso</label>
+                <label className="max-w-[80%]">
+                  Há diabeticos na família?
+                </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.weight}
+
+              <RadioGroup
+                value={formData.diabetico_familia}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    weight: event.target.value,
+                    diabetico_familia: event.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+            {formData.diabetico_familia === "Sim" && (
+              <TextField
+                label="Quem?"
+                variant="filled"
+                value={formData.diabeticos_qual}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    diabeticos_qual: event.target.value,
                   })
                 }
               />
-            </div>
+            )}
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label className="max-w-[80%]">Estatura</label>
+                <label className="max-w-[80%]">
+                  Você é diabético(a)?
+                </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.stature}
+
+              <RadioGroup
+                value={formData.diabete}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    stature: event.target.value,
+                    diabete: event.target.value,
                   })
                 }
-              />
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
             </div>
+
 
             <div className="flex flex-col gap-1">
               <Text size="lg" asChild>
-                <label className="max-w-[80%]">IMC</label>
+                <label className="max-w-[80%]">
+                  Faz uso de insulina?
+                </label>
               </Text>
-              <TextField
-                label=""
-                variant="filled"
-                value={formData.imc}
+
+              <RadioGroup
+                value={formData.insulina}
                 onChange={(event) =>
                   setFormDate({
                     ...formData,
-                    imc: event.target.value,
+                    insulina: event.target.value,
                   })
                 }
-              />
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
             </div>
 
-            <Button type="submit" disabled={isLoadingCreateForm}>
-              {isLoadingCreateForm ? (
-                <CircularProgress size={24} color="secondary" />
-              ) : (
-                "Enviar"
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>Patologia:</label>
+              </Text>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Colesterol"
+                  checked={formData.patologia.includes("Colesterol")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        patologia: [...formData.patologia, "Colesterol"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        patologia: formData.patologia.filter((item) => item !== "Colesterol"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Colesterol"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Colesterol
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Triglicéridesalterado"
+                  checked={formData.patologia.includes("Triglicéridesalterado")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        patologia: [...formData.patologia, "Triglicéridesalterado"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        patologia: formData.patologia.filter((item) => item !== "Triglicéridesalterado"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Triglicéridesalterado"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Triglicérides alterado
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Convulsões"
+                  checked={formData.patologia.includes("Convulsões")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        patologia: [...formData.patologia, "Convulsões"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        patologia: formData.patologia.filter((item) => item !== "Convulsões"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Convulsões"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Convulsões
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="problemas_gastricos"
+                  checked={formData.patologia.includes("problemas_gastricos")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        patologia: [...formData.patologia, "problemas_gastricos"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        patologia: formData.patologia.filter((item) => item !== "problemas_gastricos"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="problemas_gastricos"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Problemas gástricos
+                </label>
+              </div>
+
+
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Ansiedade"
+                  checked={formData.patologia.includes("Ansiedade")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        patologia: [...formData.patologia, "Ansiedade"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        patologia: formData.patologia.filter((item) => item !== "Ansiedade"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Ansiedade"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Ansiedade
+                </label>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="Problemas_cardiacos"
+                  checked={formData.patologia.includes("Problemas_cardiacos")}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setFormDate({
+                        ...formData,
+                        patologia: [...formData.patologia, "Problemas_cardiacos"],
+                      })
+                    } else {
+                      setFormDate({
+                        ...formData,
+                        patologia: formData.patologia.filter((item) => item !== "Problemas_cardiacos"),
+                      })
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="Problemas_cardiacos"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Problemas cardíacos
+                </label>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <Text>Outro:</Text>
+                <TextField
+                  label=""
+                  variant="filled"
+                  value={formData.outra_patologia}
+                  onChange={(e) =>
+                    setFormDate({
+                      ...formData,
+                      outra_patologia: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+
+
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>HISTÓRICO ALIMENTAR NUTRICIONAL: </label>
+              </Text>
+
+              <div className="flex flex-col gap-1">
+                <Text size="lg" asChild>
+                  <label className="max-w-[80%]">
+                    Você possui alguma condição de saúde que possa afetar sua alimentação?
+                  </label>
+                </Text>
+
+                <RadioGroup
+                  value={formData.condicao_saude}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      condicao_saude: event.target.value,
+                    })
+                  }
+                  row
+                >
+                  <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                  <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                </RadioGroup>
+              </div>
+
+              {formData.condicao_saude === "Sim" && (
+                <TextField
+                  label="Qual?"
+                  variant="filled"
+                  value={formData.qual_condicao}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      qual_condicao: event.target.value,
+                    })
+                  }
+                />
               )}
-            </Button>
+
+
+
+
+
+
+              <div className="flex flex-col gap-1">
+                <Text size="lg" asChild>
+                  <label className="max-w-[80%]">
+                    Você possui alguma restrição alimentar ou alergia?
+                  </label>
+                </Text>
+
+                <RadioGroup
+                  value={formData.restric_alimentar}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      restric_alimentar: event.target.value,
+                    })
+                  }
+                  row
+                >
+                  <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                  <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                </RadioGroup>
+              </div>
+
+              {formData.restric_alimentar === "Sim" && (
+                <TextField
+                  label="Qual?"
+                  variant="filled"
+                  value={formData.restric_alimentar_qual}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      restric_alimentar_qual: event.target.value,
+                    })
+                  }
+                />
+              )}
+            </div>
+
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Peso atual em kg:
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.peso}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    peso: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Altura:
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.altura}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    altura: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Quantas refeições por dia?
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.refeic_pordia}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    refeic_pordia: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Ingestão de água por dia?
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.agua_pordia}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    agua_pordia: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Você consome frutas e vegetais?
+                </label>
+              </Text>
+
+              <RadioGroup
+                value={formData.fruta_vegetal}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    fruta_vegetal: event.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+            {formData.fruta_vegetal === "Sim" && (
+              <TextField
+                label="Com qual frequência?"
+                variant="filled"
+                value={formData.frutaveg_frequencia}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    frutaveg_frequencia: event.target.value,
+                  })
+                }
+              />
+            )}
+
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Você costuma ingerir alimentos ultraprocessados?
+                </label>
+              </Text>
+
+              <RadioGroup
+                value={formData.alimento_processado}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    alimento_processado: event.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+            {formData.alimento_processado === "Sim" && (
+              <TextField
+                label="Com qual frequência?"
+                variant="filled"
+                value={formData.alimento_processado_frequencia}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    alimento_processado_frequencia: event.target.value,
+                  })
+                }
+              />
+            )}
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Como é seu apetite em geral?
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.apetite}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    apetite: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Você toma algum suplemento vitamínico ou mineral?
+                </label>
+              </Text>
+
+              <RadioGroup
+                value={formData.suplemento}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    suplemento: event.target.value,
+                  })
+                }
+                row
+              >
+                <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+              </RadioGroup>
+            </div>
+
+            {formData.suplemento === "Sim" && (
+              <TextField
+                label="Qual?"
+                variant="filled"
+                value={formData.suplemento_qual}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    suplemento_qual: event.target.value,
+                  })
+                }
+              />
+            )}
+
+
+            <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>ATIVIDADE FÍSICA: </label>
+              </Text>
+
+
+              <div className="flex flex-col gap-1">
+                <Text size="lg" asChild>
+                  <label className="max-w-[80%]">
+                    Faz a prática de atividades?
+                  </label>
+                </Text>
+
+                <RadioGroup
+                  value={formData.atividade_fisica}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      atividade_fisica: event.target.value,
+                    })
+                  }
+                  row
+                >
+                  <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                  <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                </RadioGroup>
+              </div>
+
+              {formData.atividade_fisica === "Sim" && (
+                <TextField
+                  label="Em qual frequência?"
+                  variant="filled"
+                  value={formData.atividade_fisica_frequencia}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      atividade_fisica_frequencia: event.target.value,
+                    })
+                  }
+                />
+              )}
+              </div>  
+
+
+              <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label>QUALIDADE DO SONO: </label>
+              </Text>
+
+              <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Que horas costuma acordar:
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.hora_acorda}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    hora_acorda: event.target.value,
+                  })
+                }
+              />
+              </div>
+
+
+              <div className="flex flex-col gap-1">
+              <Text size="lg" asChild>
+                <label className="max-w-[80%]">
+                  Ques horas costuma dormir:
+                </label>
+              </Text>
+              <TextField
+                label=""
+                variant="filled"
+                multiline
+                rows={2}
+                value={formData.hora_dormir}
+                onChange={(event) =>
+                  setFormDate({
+                    ...formData,
+                    hora_dormir: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            <div className="flex flex-col gap-1">
+                <Text size="lg" asChild>
+                  <label className="max-w-[80%]">
+                    Dorme a noite toda?
+                  </label>
+                </Text>
+
+                <RadioGroup
+                  value={formData.dorme_noite_toda}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      dorme_noite_toda: event.target.value,
+                    })
+                  }
+                  row
+                >
+                  <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                  <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                </RadioGroup>
+              </div>
+
+
+              <div className="flex flex-col gap-1">
+                <Text size="lg" asChild>
+                  <label className="max-w-[80%]">
+                    Toma alguma medicação que interfira no sono?
+                  </label>
+                </Text>
+
+                <RadioGroup
+                  value={formData.medicacao_sono}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      medicacao_sono: event.target.value,
+                    })
+                  }
+                  row
+                >
+                  <FormControlLabel value="Não" control={<Radio />} label="Não" />
+                  <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                </RadioGroup>
+              </div>
+
+              {formData.medicacao_sono === "Sim" && (
+                <TextField
+                  label="Qual?"
+                  variant="filled"
+                  value={formData.qual_medicacao}
+                  onChange={(event) =>
+                    setFormDate({
+                      ...formData,
+                      qual_medicacao: event.target.value,
+                    })
+                  }
+                />
+              )}
+
+            </div>
+
+
+              <Button type="submit" disabled={isLoadingCreateForm}>
+                {isLoadingCreateForm ? (
+                  <CircularProgress size={24} color="secondary" />
+                ) : (
+                  "Enviar"
+                )}
+              </Button>
           </form>
         </div>
       </div>
@@ -535,6 +1111,7 @@ import {
   TextField,
 } from "@mui/material";
 import axios from "axios";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const frameworks = [
   {

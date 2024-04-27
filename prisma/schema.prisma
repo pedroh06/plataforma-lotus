@@ -6,15 +6,14 @@ generator client {
 }
 
 datasource db {
-    provider  = "postgresql"
-    url       = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+    //directUrl = env("DIRECT_URL")
     // If you want to use Prisma Migrate, you will need to manually create a shadow database
     // https://neon.tech/docs/guides/prisma-migrate#configure-a-shadow-database-for-prisma-migrate
     // make sure to append ?connect_timeout=10 to the connection string
     // shadowDatabaseUrl = env(“SHADOW_DATABASE_URL”)
 }
-
-
 
 // datasource db {
 //     provider = "postgresql"
@@ -54,6 +53,12 @@ model Resident {
     susCard String?
     phone   String?
 
+    aluno_escola String?
+
+    pai_do_aluno            String?
+    morador_sagrada_familia String?
+    morador_proximidades    String?
+
     isChild        Boolean @default(false)
     children       Int?
     agesOfChildren Int[]   @default([])
@@ -78,14 +83,19 @@ model Resident {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    Dental_Anamnesis_GAIA_1  Dental_Anamnesis_GAIA_1[]
-    Medical_Anamnesis_GAIA_1 Medical_Anamnesis_GAIA_1[]
-    Medical_Care_GAIA_1      Medical_Care_GAIA_1[]
-    Nutritional_Form_GAIA_1  Nutritional_Form_GAIA_1[]
-    physiotherapyAnamnesis   physiotherapyAnamnesis[]
-    Blank_Sheet              Blank_Sheet[]
-    Psicologia_FORM_ESSE_RIO Psicologia_FORM_ESSE_RIO[]
-    Direito_FORM_ESSE_RIO    Direito_FORM_ESSE_RIO[]
+    Dental_Anamnesis_GAIA_1   Dental_Anamnesis_GAIA_1[]
+    Medical_Anamnesis_GAIA_1  Medical_Anamnesis_GAIA_1[]
+    Medical_Care_GAIA_1       Medical_Care_GAIA_1[]
+    Nutritional_Form_GAIA_1   Nutritional_Form_GAIA_1[]
+    physiotherapyAnamnesis    physiotherapyAnamnesis[]
+    Blank_Sheet               Blank_Sheet[]
+    Psicologia_FORM_ESSE_RIO  Psicologia_FORM_ESSE_RIO[]
+    Direito_FORM_Adulto       Direito_FORM_Adulto[]
+    Direito_FORM_Crianca      Direito_FORM_Crianca[]
+    medicina                  medicina[]
+    psicologia                psicologia[]
+    odontologia               odontologia[]
+    Empreendedorismo_FORM_RIT Empreendedorismo_FORM_RIT[]
 }
 
 model Blank_Sheet {
@@ -189,6 +199,53 @@ model Medical_Anamnesis_GAIA_1 {
     resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Empreendedorismo_FORM_RIT {
+    id     String @id @default(cuid())
+    userId String
+
+    oportunidadeParaCriarUmNegocio               String?
+    teveAlgumaExperienciaParaIniciarUmNegocio    String?
+    obsteveAlgumaExperienciaParaIniciarUmNegocio String?
+    investeEmAlgumProduto                        String?
+    obsInvesteEmAlgumProduto                     String?
+    participariaDeUmaCapacitacao                 String?
+    obsParticipariaDeUmaCapacitacao              String?
+    jaLidouComFinancas                           String?
+    obsJaLidouComFinancas                        String?
+    possuiInterneteDispositivosEletronicos       String?
+    obsPossuiInterneteDispositivosEletronicos    String?
+    familiaridadeComTecnologia                   String?
+    obsFamiliaridadeComTecnologia                String?
+    comoSeAtualizaSobreTendenciasDeNegocio       String?
+    experienciaEmLidarComClientes                String?
+    obsExperienciaEmLidarComClientes             String?
+    participouDeProgramasDeCapacitacao           String?
+    obsParticipouDeProgramasDeCapacitacao        String?
+    interesseEmParticipar                        String?
+    obsInteresseEmParticipar                     String?
+    facilidadeEmSeAdaptarEmNovosAmbientes        String?
+    obsFacilidadeEmSeAdaptarEmNovosAmbientes     String?
+
+    renda                String?
+    atividade_remunerada String?
+    qual_atividade       String?
+    tempo_empreend       String?
+    oq_sabe_empreend     String?
+    desejo_empreend      String?
+    qual_negocio         String?
+
+    caracteristicas_perfil String[]
+    outros_perfis          String?
+    fonte_motivacao        String?
+    expectativa_negocio    String?
+    ajuda_empreendedorismo String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Medical_Care_GAIA_1 {
     id     String @id @default(cuid())
     userId String
@@ -218,46 +275,76 @@ model Medical_Care_GAIA_1 {
     resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Direito_FORM_ESSE_RIO {
+model Direito_FORM_Adulto {
     id     String @id @default(cuid())
     userId String
+
+    road         String?
+    houseNumber  String?
+    neighborhood String?
+    city         String?
+    uf           String?
+    email        String?
+    immobile     String?
+    cnpj         String?
+    demand       String[]
+    others       String?
+    observations String?
+    forwarding   String[]
+    other        String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Direito_FORM_Crianca {
+    id     String @id @default(cuid())
+    userId String
+
+    report String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Psicologia_FORM_ESSE_RIO {
-    id     String @id @default(cuid())
-    userId String
-     father_name        String?
-    father_age          String?
-    father_job          String?
-    father_scholarship  String?
-    mother_name         String?
-    mother_age          String?
-    mother_job          String?
-    mother_scholarship  String?
-    sons                String?
-    partner_age         String?
-    partner_scholarship String?
-    partner_name        String?
-    complaintMain       String?
-    choice_pain         String[]
-    extern_stress       String?
-    which_stress        String?
-    syntoms_signals     String?
-    event_childhood     String?
-    family              String?
-    other_observation   String?
-    psi_before          String?
-    desease             String?
-    use_medicine        String?
-    historical_family_desease   String?
-    family_substance_abuse  String?
-    family_suicide_history  String?
-    notes               String?
-    notes_2             String?
+    id                        String   @id @default(cuid())
+    userId                    String
+    father_name               String?
+    father_age                String?
+    father_job                String?
+    father_scholarship        String?
+    mother_name               String?
+    mother_age                String?
+    mother_job                String?
+    mother_scholarship        String?
+    sons                      String?
+    partner_age               String?
+    partner_scholarship       String?
+    partner_name              String?
+    complaintMain             String?
+    choice_pain               String[]
+    extern_stress             String?
+    which_stress              String?
+    syntoms_signals           String?
+    event_childhood           String?
+    family                    String?
+    other_observation         String?
+    psi_before                String?
+    desease                   String?
+    use_medicine              String?
+    historical_family_desease String?
+    family_substance_abuse    String?
+    family_suicide_history    String?
+    notes                     String?
+    notes_2                   String?
 
-
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -267,41 +354,205 @@ model Nutritional_Form_GAIA_1 {
 
     userId String
 
-    hg      String?
-    ht      String?
-    tg      String?
-    HDL     String?
-    LDL     String?
-    glucose String?
+    cirurgia          String?
+    qual_cirurgia     String?
+    health_problem    String?
+    tabagismo         String?
+    alcoolismo        String?
+    obesidade         String?
+    obesos_familia    String?
+    obeso_qual        String?
+    diabete           String?
+    diabetico_familia String?
+    diabeticos_qual   String?
+    insulina          String?
+    patologia         String[]
+    outra_patologia   String?
+    condicao_saude    String?
+    qual_condicao     String?
 
-    income_food          String?
-    type_housing         String?
-    pay_rent             String?
-    nutritionist_visit   String?
-    health_problem       String?
-    previous_pathologies String?
-    family_background    String?
+    restric_alimentar      String?
+    restric_alimentar_qual String?
 
-    use_medicine   String?
-    what_medicines String?
+    peso                           String?
+    altura                         String?
+    refeic_pordia                  String?
+    agua_pordia                    String?
+    fruta_vegetal                  String?
+    frutaveg_frequencia            String?
+    alimento_processado            String?
+    alimento_processado_frequencia String?
+    apetite                        String?
+    suplemento                     String?
+    suplemento_qual                String?
 
-    intestine_functioning_regularly String?
-    bowel_movements_day             String?
-    consistency                     String?
-    coloring                        String?
-    liters__water_consumed_per_day  String?
-    food_frequency                  String?
-    food_allergy_or_intolerance     String?
-    which_food                      String?
-    food_aversion                   String?
-    use_nutritional_supplements     String?
+    atividade_fisica            String?
+    atividade_fisica_frequencia String?
 
-    weight  String?
-    stature String?
-    imc     String?
+    hora_acorda      String?
+    hora_dormir      String?
+    dorme_noite_toda String?
+    medicacao_sono   String?
+    qual_medicacao   String?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model psicologia {
+    id                 String  @id @default(cuid())
+    userId             String
+    renda              String?
+    procura_motivo     String?
+    sentindo_hoje      String?
+    acompanhamento     String?
+    atendimento        String?
+    medicacao          String?
+    ja_usou_med        String?
+    outros_tratamentos String?
+
+    renda_fixa        String?
+    fonte_renda       String?
+    atividadesdiaadia String?
+    momentos_de_lazer String?
+    autocuidado       String?
+    estresse          String?
+    lida_estresse     String?
+    sono              String?
+    alimentacao       String?
+
+    pessoas_em_casa         String?
+    rede_de_apoio           String?
+    qual_rede               String?
+    dependentes             String?
+    emprego_renda_familia   String?
+    desafios_moradia        String?
+    necessidade_alimentacao String?
+    acesso_a_tecnologia     String?
+    acesso_a_assistencia    String?
+    ciente_de_recursos      String?
+    outra_informacao        String?
+
+    filhos               String?
+    nome_filho           String?
+    idade_filho          String?
+    filhos_matriculados  String?
+    filhos_necessidades  String?
+    comportamento_filhos String?
+    comportam_escola     String?
+    comportam_em_casa    String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model odontologia {
+    id     String @id @default(cuid())
+    userId String
+
+    instrucao               String?
+    gosta_doces             String?
+    gosta_cafe              String?
+    alcool                  String?
+    fumante                 String?
+    cirurgia                String?
+    qual_cirurgia           String?
+    complicacao             String?
+    odontalgia              String?
+    odontalgia_descricao    String?
+    fistula                 String?
+    abscesso_periodontal    String?
+    apinhamento_dentario    String?
+    raizes_residuais        String?
+    raizes_quais            String?
+    edema                   String?
+    bruxismo                String?
+    atricao_erosao_abrasao  String?
+    apertamento             String?
+    unhas                   String?
+    morde_objetos           String?
+    objetos_quais           String?
+    tenso                   String?
+    ausencia_dentes         String?
+    protese                 String?
+    qual_protese            String?
+    complaint               String?
+    isToothache             String?
+    isGumPain               String?
+    isGumsBleedWhenBrushing String?
+    isUseToothpaste         String?
+    isUseDentalFloss        String?
+    brushingFrequency       String?
+    brushType               String?
+    brushChange             String?
+    isUsePacifier           String?
+    eatingHabits            String?
+    isAllergic              String?
+    allergy                 String?
+    dentalTreatmentStatus   String?
+    dentalTreatment         String?
+    gum                     String?
+    gumObs                  String?
+    jugalMucosa             String?
+    jugalObs                String?
+    palate                  String?
+    palateObs               String?
+    floor                   String?
+    floorObs                String?
+    tongue                  String?
+    tongueObs               String?
+    fluorosis               String?
+    fluorosisObs            String?
+
+    resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model medicina {
+    id     String @id @default(cuid())
+    userId String
+
+    sleep_pattern                        String?
+    delete_functions                     String?
+    birth_type                           String?
+    ig                                   String?
+    had_complication_birth               String?
+    vaccination_schedule                 String?
+    foot_test                            String?
+    any_changes                          String?
+    eye_test                             String?
+    heart_test                           String?
+    developmental_milestones             String?
+    allergies                            String?
+    Personal_morbid_history              String?
+    Family_background                    String?
+    medications_in_use                   String?
+    school_performance                   String?
+    socialization                        String?
+    education                            String?
+    ocupation                            String?
+    screenTime                           String?
+    alcoholism                           String?
+    smoking                              String?
+    use_of_drugs                         String?
+    physical_activity                    String?
+    menarche                             String?
+    dum                                  String?
+    sexarch                              String?
+    cicle                                String?
+    use_of_contraceptive_method          String?
+    examiners_perception                 String?
+    ac                                   String?
+    ap                                   String?
+    pulse                                String?
+    breathing                            String?
+    pa                                   String?
+    temp                                 String?
+    request_for_specific_demand_approach String?
+    observation                          String?
 
     resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -310,28 +561,39 @@ model physiotherapyAnamnesis {
     id     String @id @default(cuid())
     userId String
 
-    complaintMain      String?
-    complaintSecondary String?
-    hda                String?
-    medicinesUse       String?
-    personalBackground String?
+    complaintMain                String?
+    complaintSecondary           String?
+    hda                          String?
+    hdp                          String?
+    hf                           String?
+    observacao                   String?
+    observacao2                  String?
+    teste_especifico             String?
+    teste_especifico_observacao1 String?
+    teste_especifico_observacao2 String?
 
+    other_pain              String?
+    medicinesUse            String?
+    postural_av             String?
+    comp_exam               String?
+    interferencia           String?
+    oberserv                String?
     painAssessment          String?
     painAssessmentIntensity String?
     painLocation            String?
     painIntensity           String?
     painFrequency           String?
     painFeature             String?
-
-    specificInspection    String?
-    specificInspectionObs String?
-
-    weight String?
-    height String?
-    pa     String?
-    fc     String?
-    fr     String?
-    ap     String?
+    specific_inspection     String[]
+    specificInspectionObs   String?
+    pain_characteristics    String[]
+    sensacao                String[]
+    parada_final            String[]
+    restricao_mov           String[]
+    percep                  String[]
+    pastExercises           String?
+    pain_interference       String[]
+    pain_assessment         String[]
 
     posturalEvaluation    String?
     posturalEvaluationObs String?
@@ -425,14 +687,8 @@ model physiotherapyAnamnesis {
     memberTested5     String?
     degreeOfStrength5 String?
 
-    specific_inspection  String[]
-    pain_characteristics String[]
-    pain_interference    String[]
-    pain_assessment      String[]
-
-    pastExercises String?
-
     generalObservation String?
+    spaceToMember      String?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

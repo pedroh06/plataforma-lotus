@@ -161,7 +161,7 @@ export const Editor = ({
       console.log(editor.getHTML());
       onChange(editor.getHTML());
     },
-    content: content ? content : "<h3>Enfermagem</h3><ul><li><p>Queixa: </p></li><li><p>Ao exame físico: </p></li><li><p>TA: </p></li><li><p>Temperatura:</p></li><li><p>SPO2:</p></li><li><p>Pulso:  a</p></li></ul><h3>Medicina</h3><ul><li><p>HDA</p></li><li><p>AMP: </p></li><li><p>Conduta:</p></li></ul>",
+    content: content ? content : "<h3>Enfermagem</h3><ul><li><p>Queixa: </p></li><li><p>Ao exame físico: </p></li><li><p>PA: </p></li><li><p>Temperatura:</p></li><li><p>SPO2:</p></li><li><p>Pulso:  </p></li></ul><h3>Medicina</h3><ul><li><p>HDA</p></li><li><p>AMP: </p></li><li><p>Conduta:</p></li></ul>",
     autofocus: "end",
     editorProps: {
       attributes: {

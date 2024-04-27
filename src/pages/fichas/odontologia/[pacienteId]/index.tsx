@@ -126,7 +126,7 @@ export default function Medicina() {
                       className="flex items-center gap-2 self-end text-sm text-gray-400 transition-colors hover:text-gray-600 focus:outline-none"
                       onClick={() =>
                         router.push(
-                          `/fichas/odontologia/${pacienteId}/form/esseRio/criar`,
+                          `/fichas/odontologia/${pacienteId}/form/Lotus/criar`,
                         )
                       }
                     >
@@ -149,7 +149,7 @@ export default function Medicina() {
                         </DialogFooter>
                       </DialogContent>
                     </Dialog> */}
-                    {resident.Nutritional_Form_GAIA_1.map((anamnese) => (
+                    {resident.odontologia.map((anamnese) => (
                       <>
                         <div
                           key={anamnese.id}

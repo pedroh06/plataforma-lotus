@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { db } from "@/server/db";
 import { randomUUID } from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -14,15 +14,12 @@ export default async function handler(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const body = req.body;
 
-    const user = await db.psicologia.upsert({
-      where: {
-        id: body.id ? body.id : randomUUID(),
-      },
-      create: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const user = await db.direito_FORM_Crianca.create({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      data: {
         ...body,
-      },
-      update: {
-        ...body,
+        id: randomUUID(),
       },
     });
 

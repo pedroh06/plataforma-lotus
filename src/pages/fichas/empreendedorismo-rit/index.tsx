@@ -26,7 +26,7 @@ export default function ResidentePage() {
   return (
     <RecordLayout>
       <div className="flex w-full flex-col items-center justify-center gap-4 rounded-md bg-white px-4 py-16 shadow-2xl sm:w-[600px]">
-        <h1 className="bold text-xl">Fichas de Nutrição</h1>
+        <h1 className="bold text-xl">Fichas de Empreendedorismo (RIT)</h1>
         <button
           className="flex h-10 w-full items-center justify-center gap-1 rounded-md bg-purple-800 text-sm font-bold text-white"
           onClick={() => router.push("/residente/cadastrar")}
@@ -37,7 +37,7 @@ export default function ResidentePage() {
 
         <ListUser
           users={users}
-          onClick={(user) => router.push(`/fichas/nutricao/${user.id}`)}
+          onClick={(user) => router.push(`/fichas/empreendedorismo-rit/${user.id}`)}
         />
       </div>
     </RecordLayout>
