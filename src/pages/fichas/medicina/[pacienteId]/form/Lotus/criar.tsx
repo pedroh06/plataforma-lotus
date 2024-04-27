@@ -24,6 +24,7 @@ export default function Medicina() {
   const [isLoadingCreateForm, setIsLoadingCreateForm] = useState(false);
 
   const [formData, setFormDate] = useState({
+    main_complaint: "",
     sleep_pattern: "",
     delete_functions: "",
     birth_type: "",
