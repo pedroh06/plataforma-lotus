@@ -164,6 +164,8 @@ model Dental_Anamnesis_Tooth_GAIA_1 {
     createdAt               DateTime                 @default(now())
     updatedAt               DateTime                 @updatedAt
     Dental_Anamnesis_GAIA_1 Dental_Anamnesis_GAIA_1? @relation(fields: [dentalAnamnesis_Id], references: [id])
+    odontologia             odontologia?             @relation(fields: [odontologiaId], references: [id])
+    odontologiaId           String?
 }
 
 model Medical_Anamnesis_GAIA_1 {
@@ -507,6 +509,10 @@ model odontologia {
     tongueObs               String?
     fluorosis               String?
     fluorosisObs            String?
+
+    teeth Json[]
+
+    tooth Dental_Anamnesis_Tooth_GAIA_1[]
 
     resident Resident @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
