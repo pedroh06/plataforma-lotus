@@ -518,9 +518,9 @@ model odontologia {
 }
 
 model medicina {
-    id     String @id @default(cuid())
-    userId String
-
+    id                                   String  @id @default(cuid())
+    userId                               String
+    main_complaint                       String?
     sleep_pattern                        String?
     delete_functions                     String?
     birth_type                           String?
