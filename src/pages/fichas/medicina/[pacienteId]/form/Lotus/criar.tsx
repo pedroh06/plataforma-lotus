@@ -119,7 +119,7 @@ export default function Medicina() {
 
     try {
       setIsLoadingCreateForm(true);
-      await axios.post("/api/fichas/psicologia", {
+      await axios.post("/api/fichas/medicina", {
         userId: pacienteId,
         ...formData,
       });

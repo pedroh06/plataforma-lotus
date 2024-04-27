@@ -974,7 +974,6 @@ export default function Medicina() {
               />
             </div>
 
-
             <div className="flex flex-col gap-1">
               <Text>No que podemos lhe ajudar, na vertente de empreendedorismo?</Text>
               <TextField
